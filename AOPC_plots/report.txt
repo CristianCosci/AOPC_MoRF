@@ -1,0 +1,9 @@
+AOPC mean original img:  0.578667545339046
+AOPC mean center_distance img:  0.6129269547074064
+AOPC mean ssim_not_inv img:  0.5962415208720705
+
+MAX drowdown using center_distance:  0.3586846625536908  at index:  4
+MAX drowdown using ssim_not_inv:  0.319102777598884  at index:  28
+
+MEAN drowdown using center_distance:  -0.03425940936836038
+MEAN drowdown using ssim_not_inv:  -0.017573975533024644
