@@ -83,8 +83,8 @@ model = resnet50(pretrained=True).to(DEVICE)
 model.eval()
 
 total_AOPC = dict()
-block_size = args.size
-block_per_row = args.row
+block_size = int(args.size)
+block_per_row = int(args.row)
 
 # run for each images
 for name_id in range(len(imgs_names)):
