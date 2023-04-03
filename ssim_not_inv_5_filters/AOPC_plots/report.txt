@@ -1,8 +1,0 @@
-AOPC mean original img:  0.578667545339046
-AOPC mean center_distance img:  0.5439127962909311
-AOPC mean ssim_not_inv img:  0.5239857904908904
-
-MAX drowdown using gradcam:  0.758211176154075  at index:  6
-MAX drowdown using eigencam:  0.37174651777367007  at index:  16
-MEAN drowdown using gradcam:  0.028381576036029973
-MEAN drowdown using eigencam:  0.06804535734392636

@@ -14,6 +14,8 @@ import pickle
 parser = argparse.ArgumentParser(description='AOPC MoRF')
 parser.add_argument('imgs_dir', help='directory which contains images for AOPC')
 parser.add_argument('cams_dir', help='directory which contains cams for AOPC')
+parser.add_argument('-block_size', '--size', help='block size for evaluating AOPC', default=8)
+parser.add_argument('-block_row', '--row', help='number of blocks per row in images', default=28)
 parser.add_argument('-results_file_name', '--file_name', help='name of the file in which save results', default='results.pkl')
 parser.add_argument('-v', '--verbose', help='enable verbose mode', default=False)
 args = parser.parse_args()
@@ -81,8 +83,8 @@ model = resnet50(pretrained=True).to(DEVICE)
 model.eval()
 
 total_AOPC = dict()
-block_size = 16
-block_per_row = 14
+block_size = args.size
+block_per_row = args.row
 
 # run for each images
 for name_id in range(len(imgs_names)):

@@ -1,0 +1,14 @@
+Test prodotti su immagine attaccate utilizzando AGV con 5 filtri.
+La funzioni obiettivo utilizzata nella fitness è:
+- ssim_not_inv
+
+I metodi XAI attaccati sono:
+- EigenCAM
+- GradCAM
+
+L'immagine 8 non è stata generata per un errore nell'algoritmo di attacco.
+
+Per il calcolo di AOPC è stata utilizzata:
+- dimensione blocco 16 con 14 blocchi per riga
+- dimensione blocco 8 con 28 blocchi per riga
+- dimensione blocco 4 con 56 blocchi per riga
