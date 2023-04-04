@@ -2,10 +2,10 @@ import numpy as np
 import pickle
 import matplotlib.pyplot as plt
 
-name1 = 'gradcam_results_8_28'
-name2 = 'eigencam_results_8_28'
+name1 = 'gradcam_results_4_56'
+name2 = 'eigencam_results_4_56'
 
-origin_results_path = 'original_results_8_28.pkl'
+origin_results_path = 'original_results_4_56.pkl'
 
 with open(origin_results_path, 'rb') as f:
     origin_results = pickle.load(f)
@@ -58,9 +58,9 @@ name_id = [i for i in result1.keys()]
 #     to_sum_result2 += result2[id][2]
 
 
-# print('AOPC mean original img: ', to_sum_origin / (len(name_id)))
-# print('AOPC mean ' + name1 + ' img: ', to_sum_result1 / (len(name_id)))
-# print('AOPC mean ' + name2 + ' img: ', to_sum_result2 / (len(name_id)))
+# print('AOPC mean original img: ', to_sum_origin / (len(name_id)-1))
+# print('AOPC mean ' + name1 + ' img: ', to_sum_result1 / (len(name_id)-1))
+# print('AOPC mean ' + name2 + ' img: ', to_sum_result2 / (len(name_id)-1))
 
 
 # ----------------------------------------
@@ -78,8 +78,8 @@ name_id = [i for i in result1.keys()]
 # print('MAX drawdown using ' + name2 + ': ', np.max(diff_result2), \
 #       ' at index: ', diff_result2.index(np.max(diff_result2)))
 
-# print('MEAN drawdown using center_distance: ', np.mean(diff_result1))
-# print('MEAN drawdown using ssim_not_inv: ', np.mean(diff_result2))
+# print('MEAN drawdown using ' + name1 + ': ', np.mean(diff_result1))
+# print('MEAN drawdown using ' + name2 + ': ', np.mean(diff_result2))
 
 # ----------------------
 

@@ -4,5 +4,5 @@ AOPC mean eigencam_results_8_28 img:  0.5027852483787467
 
 MAX drawdown using gradcam_results_8_28:  0.7310810857257386  at index:  6
 MAX drawdown using eigencam_results_8_28:  0.4645902913696921  at index:  15
-MEAN drawdown using center_distance:  0.027376060552281124
-MEAN drawdown using ssim_not_inv:  0.05409077091670439
+MEAN drawdown using gradcam_results_8_28:  0.027376060552281124
+MEAN drawdown using eigencam_results_8_28:  0.05409077091670439
