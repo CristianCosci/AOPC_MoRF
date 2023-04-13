@@ -2,8 +2,8 @@
 
 ## Tabella riepilogativa risultati
 
-- |Immagine completa | 100-esimo percentile | 90-esimo percentile | 60-esimo percentile | 30-esimo percentile |
-|-----------: |-----------: |-----------: | -----------: | -----------: | -----------: |
+| - |Immagine completa | 100-esimo percentile | 90-esimo percentile | 60-esimo percentile | 30-esimo percentile |
+|----------- |----------- |-----------: | ----------- | ----------- | ----------- |
 | **Immagini non attaccate** | 0.5632 | 0.4582 | 0.3307 | 0.1938 | 0.1041 |
 | **Attacco con doppia ssim** | 0.4663 <br> *-17.19%* | 0.3833 <br> *-16.34%* | 0.2937 <br> *-11.18%* | 0.1880 <br> *-2.94%* | 0.1013 <br> *-2.73%*|
 | **Attacco con center distance + ssim** | 0.5066 <br> *-10.05%* | 0.4237 <br> *-7.53%* | 0.3201 <br> *-3.21%* | 0.2049 <br> *+5.73%* | 0.1224 <br> *+17.53%* | testo 3 | testo 3 |
