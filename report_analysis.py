@@ -2,10 +2,10 @@ import numpy as np
 import pickle
 import matplotlib.pyplot as plt
 
-name1 = 'gradcam_results_4_56'
-name2 = 'eigencam_results_4_56'
+name1 = 'ssim_results_8_28_pct30'
+name2 = 'center_distance_results_8_28_pct30'
 
-origin_results_path = 'original_results_4_56.pkl'
+origin_results_path = 'original_results_8_28_pct30.pkl'
 
 with open(origin_results_path, 'rb') as f:
     origin_results = pickle.load(f)
@@ -35,8 +35,8 @@ name_id = [i for i in result1.keys()]
 
 # ------------------------------
 
-# data = [[origin_results[i][2] for i in range(20,30)], [result1[i][2] for i in range(20,30)], [result2[i][2] for i in range(20,30)]]
-# X = np.arange(20,30)
+# data = [[origin_results[i][2] for i in range(0,10)], [result1[i][2] for i in range(0,10)], [result2[i][2] for i in range(0,10)]]
+# X = np.arange(0,10)
 
 # plt.figure(figsize=(12,6))
 # plt.bar(X - 0.25, data[0], color = 'green', width = 0.25)
@@ -44,24 +44,32 @@ name_id = [i for i in result1.keys()]
 # plt.bar(X + 0.25, data[2], color = 'blue', width = 0.25)
 # plt.legend(labels=['original', name1, name2])
 # plt.xticks(X)
-# plt.savefig('AOPC_value_plot_20_30.png')
+# plt.savefig('AOPC_value_plot_0_10.png')
 
 # ------------------------------------------
 
-# to_sum_origin = 0
-# to_sum_result1 = 0
-# to_sum_result2 = 0
+to_sum_origin = 0
+to_sum_result1 = 0
+to_sum_result2 = 0
 
-# for id in name_id:
-#     to_sum_origin += origin_results[id][2]
-#     to_sum_result1 += result1[id][2]
-#     to_sum_result2 += result2[id][2]
+for id in name_id:
+    to_sum_origin += origin_results[id][2]
+    to_sum_result1 += result1[id][2]
+    to_sum_result2 += result2[id][2]
 
 
-# print('AOPC mean original img: ', to_sum_origin / (len(name_id)-1))
-# print('AOPC mean ' + name1 + ' img: ', to_sum_result1 / (len(name_id)-1))
-# print('AOPC mean ' + name2 + ' img: ', to_sum_result2 / (len(name_id)-1))
+AOPC_original = to_sum_origin / len(name_id)
+AOPC_name1 = to_sum_result1 / len(name_id)
+AOPC_name2 = to_sum_result2 / len(name_id)
+print('AOPC mean original img: ', AOPC_original)
+print('AOPC mean ' + name1 + ' img: ', AOPC_name1)
+print('AOPC mean ' + name2 + ' img: ', AOPC_name2)
+print()
 
+drawdown_pct1 = (AOPC_original - AOPC_name1) / AOPC_original * 100
+drawdown_pct2 = (AOPC_original - AOPC_name2) / AOPC_original * 100
+print(f'AOPC drawdown for {name1} : {drawdown_pct1}%')
+print(f'AOPC drawdown for {name2} : {drawdown_pct2}%')
 
 # ----------------------------------------
 
