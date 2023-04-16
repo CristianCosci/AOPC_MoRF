@@ -2,8 +2,8 @@ import numpy as np
 import pickle
 import matplotlib.pyplot as plt
 
-name1 = 'ssim_results_8_28_pct30'
-name2 = 'center_distance_results_8_28_pct30'
+name1 = 'ssim_results_6f_8_28_pct30'
+name2 = 'ssim_results_8_28_pct30'
 
 origin_results_path = 'original_results_8_28_pct30.pkl'
 

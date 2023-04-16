@@ -5,8 +5,9 @@
 | - |Immagine completa | 100-esimo percentile | 90-esimo percentile | 60-esimo percentile | 30-esimo percentile |
 |----------- |----------- |-----------: | ----------- | ----------- | ----------- |
 | **Immagini non attaccate** | 0.5632 | 0.4582 | 0.3307 | 0.1938 | 0.1041 |
-| **Attacco con doppia ssim** | 0.4663 <br> *-17.19%* | 0.3833 <br> *-16.34%* | 0.2937 <br> *-11.18%* | 0.1880 <br> *-2.94%* | 0.1013 <br> *-2.73%*|
-| **Attacco con center distance + ssim** | 0.5066 <br> *-10.05%* | 0.4237 <br> *-7.53%* | 0.3201 <br> *-3.21%* | 0.2049 <br> *+5.73%* | 0.1224 <br> *+17.53%* | testo 3 | testo 3 |
+| **Attacco con doppia ssim (5 filtri)** | 0.4663 <br> *-17.19%* | 0.3833 <br> *-16.34%* | 0.2937 <br> *-11.18%* | 0.1880 <br> *-2.94%* | 0.1013 <br> *-2.73%*|
+| **Attacco con doppia ssim (6 filtri)** | 0.4669 <br> *-17.09%* | 0.3954 <br> *-13.70%* | 0.3148 <br> *-4.81%* | 0.2209 <br> *+14.00%* | 0.1320 <br> *+26.77%*|
+| **Attacco con center distance + ssim** | 0.5066 <br> *-10.05%* | 0.4237 <br> *-7.53%* | 0.3201 <br> *-3.21%* | 0.2049 <br> *+5.73%* | 0.1224 <br> *+17.53%* |
 
 <hr>
 
@@ -15,6 +16,8 @@
 - AOPC mean original img:  0.5632567150117938
 - AOPC mean ssim_results_8_28 img:  0.4663839017031545
     - AOPC drawdown for ssim_results_8_28 : 17.198696567090348%
+- AOPC mean ssim_results_6f_8_28 img:  0.4669915485613351
+    - AOPC drawdown for ssim_results_6f_8_28 : 17.09081558813604%
 - AOPC mean center_distance_results_8_28 img:  0.5066007359088551
     - AOPC drawdown for center_distance_results_8_28 : 10.058642461413413%
 
@@ -23,6 +26,8 @@
 - AOPC mean original img:  0.45825254050022124
 - AOPC mean ssim_results_8_28_pct100 img:  0.38332990623155117
     - AOPC drawdown for ssim_results_8_28_pct100 : 16.34963860470598%
+- AOPC mean ssim_results_6f_8_28_pct100 img:  0.3954666746099521
+    - AOPC drawdown for ssim_results_6f_8_28_pct100 : 13.701149549925695%
 - AOPC mean center_distance_results_8_28_pct100 img:  0.4237369108883394
     - AOPC drawdown for center_distance_results_8_28_pct100 : 7.532010531617588%
 
@@ -31,6 +36,8 @@
 - AOPC mean original img:  0.3307734695687888
 - AOPC mean ssim_results_8_28_pct90 img:  0.293779251267551
     - AOPC drawdown for ssim_results_8_28_pct90 : 11.184155231513916%
+- AOPC mean ssim_results_6f_8_28_pct90 img:  0.3148461614172704
+    - AOPC drawdown for ssim_results_6f_8_28_pct90 : 4.815170990672843%
 - AOPC mean center_distance_results_8_28_pct90 img:  0.3201371541582006
     - AOPC drawdown for center_distance_results_8_28_pct90 : 3.215589032716004%
 
@@ -39,6 +46,8 @@
 - AOPC mean original img:  0.19380234351429293
 - AOPC mean ssim_results_8_28_pct60 img:  0.18809480902864453
     - AOPC drawdown for ssim_results_8_28_pct60 : 2.945028621507596%
+- AOPC mean ssim_results_6f_8_28_pct60 img:  0.22094045934401751
+    - AOPC drawdown for ssim_results_6f_8_28_pct60 : -14.002986412660768%
 - AOPC mean center_distance_results_8_28_pct60 img:  0.2049200967575992
     - AOPC drawdown for center_distance_results_8_28_pct60 : -5.736645409804519%
 
@@ -47,5 +56,7 @@
 - AOPC mean original img:  0.10418364917272427
 - AOPC mean ssim_results_8_28_pct30 img:  0.10133055513511215
     - AOPC drawdown for ssim_results_8_28_pct30 : 2.7385238089347657%
+- AOPC mean ssim_results_6f_8_28_pct30 img:  0.13208011738344727
+    - AOPC drawdown for ssim_results_6f_8_28_pct30 : -26.776244096109487%
 - AOPC mean center_distance_results_8_28_pct30 img:  0.12244721010269029
     - AOPC drawdown for center_distance_results_8_28_pct30 : -17.530160514618927%

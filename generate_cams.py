@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 from PIL import Image
 
 # definisci il percorso della cartella contenente le immagini
-directory_imgs = "center_distance_eigencam_imgs/"
+directory_imgs = "ssim_eigencam_imgs_6f/"
 # ridimensiona l'immagine
 width = 224
 height = 224
@@ -54,6 +54,6 @@ for name_id in range(len(sorted_file_list)):
         grayscale_cam = grayscale_cam[0, :]
         grayscale_cam_mask = grayscale_cam * 255  #make range between 0-255
 
-    cv2.imwrite("center_distance_eigencam_cams/best_img_cam"+str(name_id)+"_.png", grayscale_cam_mask)
+    cv2.imwrite("ssim_eigencam_cams_6f/best_img_cam"+str(name_id)+"_.png", grayscale_cam_mask)
 
 
