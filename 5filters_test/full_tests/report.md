@@ -60,3 +60,44 @@
     - AOPC drawdown for ssim_results_6f_8_28_pct30 : -26.776244096109487%
 - AOPC mean center_distance_results_8_28_pct30 img:  0.12244721010269029
     - AOPC drawdown for center_distance_results_8_28_pct30 : -17.530160514618927%
+
+---
+---
+---
+
+ATTACCO con 5 filtri su EigenCAM (utilizzando doppia ssim)
+
+Prime 30 img:
+- Mean value for ssim_not_inv: 0.6378287387954004
+- Mean value for ssim: 0.15181819323835702
+
+Su tutto il dataset (200 img):
+- Mean value for ssim_not_inv: 0.6007907153107226
+- Mean value for ssim: 0.15232910931110383
+
+ATTACCO EigenCAM doppia ssim 6 filtri
+Mean value for ssim_not_inv: 0.5766398371942342
+Mean value for ssim: 0.18512539938092232
+----------------------------------------------------------
+
+ATTACCO con 5 filtri su GradCAM (utilizzando doppia ssim)
+
+Mean value for ssim_not_inv: 0.6908552513429257
+Mean value for ssim: 0.14617449867314306
+----------------------------------------------------------
+
+ATTACCO con 3 filtri su EigenCAM (utilizzando doppia ssim)
+
+Mean value for ssim_not_inv: 0.7143981985049478
+Mean value for ssim: 0.09607736269632976
+----------------------------------------------------------
+
+ATTACCO con 3 filtri su EigenCAM (utilizzando doppia center_distance + ssim)
+
+Mean value for ssim_not_inv: 0.8602444827304809
+Mean value for ssim: 0.07587910294532776
+
+
+ATTACCO con 5 filtri su EigenCAM (utilizzando doppia center_distance + ssim)
+Mean value for ssim_not_inv: 0.829136974704341
+Mean value for ssim: 0.10992976605892181
