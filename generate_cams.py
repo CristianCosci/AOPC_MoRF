@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 from PIL import Image
 
 # definisci il percorso della cartella contenente le immagini
-directory_imgs = "ssim_eigencam_imgs_6f/"
+directory_imgs = "origin_imgs/"
 # ridimensiona l'immagine
 width = 224
 height = 224
@@ -44,7 +44,7 @@ for name_id in range(len(sorted_file_list)):
 
     input_tensor = preprocess_image(resized_image, mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 
-    cam_algorithm = EigenCAM
+    cam_algorithm = AblationCAM
 
     with cam_algorithm(model = MODEL_gradcam, target_layers = TARGET_LAYERS, use_cuda=True) as cam:
         cam.batch_size = 64
@@ -54,6 +54,6 @@ for name_id in range(len(sorted_file_list)):
         grayscale_cam = grayscale_cam[0, :]
         grayscale_cam_mask = grayscale_cam * 255  #make range between 0-255
 
-    cv2.imwrite("ssim_eigencam_cams_6f/best_img_cam"+str(name_id)+"_.png", grayscale_cam_mask)
+    cv2.imwrite("origin_cams_ablationcam/best_img_cam"+str(name_id)+"_.png", grayscale_cam_mask)
 
 
