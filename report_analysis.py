@@ -2,10 +2,10 @@ import numpy as np
 import pickle
 import matplotlib.pyplot as plt
 
-name1 = 'ssim_results_ablationcam_8_28_pct30'
-name2 = 'ssim_results_ablationcam_8_28_pct30'
+name1 = 'ssim_results_target_8_28_pct30'
+name2 = 'ssim_results_8_28_pct30'
 
-origin_results_path = 'original_results_ablationcam_8_28_pct30.pkl'
+origin_results_path = 'original_results_8_28_pct30.pkl'
 
 with open(origin_results_path, 'rb') as f:
     origin_results = pickle.load(f)
