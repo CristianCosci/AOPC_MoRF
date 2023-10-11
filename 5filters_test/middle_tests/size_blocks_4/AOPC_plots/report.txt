@@ -1,8 +1,0 @@
-AOPC mean original img:  0.4261285215937604
-AOPC mean gradcam_results_4_56 img:  0.4446320596305743
-AOPC mean eigencam_results_4_56 img:  0.41080260114546363
-
-MAX drawdown using gradcam_results_4_56:  0.6952194419045948  at index:  6
-MAX drawdown using eigencam_results_4_56:  0.4529495919034199  at index:  15
-MEAN drawdown using gradcam_results_4_56:  -0.018503538036813996
-MEAN drawdown using eigencam_results_4_56:  0.015325920448296825

@@ -11,25 +11,25 @@ import torchvision.transforms as transforms
 import matplotlib.pyplot as plt
 from PIL import Image
 
-# definisci il percorso della cartella contenente le immagini
-directory_imgs = "ssim_eigencam_target_imgs_5f/"
-# ridimensiona l'immagine
+# Directory path of images
+directory_imgs = "imgs/"
+# Resizing dimensions for image
 width = 224
 height = 224
 
-# crea una lista vuota per memorizzare i nomi dei file
+# Create an empty list to memorize files names
 file_list = []
 
-# scorri tutti i file nella cartella
+# Go through each file in the folder
 for filename in os.listdir(directory_imgs):
-    # controlla se il file è un'immagine JPEG
+    # Check if the file is a .png image
     if filename.endswith(".png"):
-        # estrai il numero "X" dal nome del file
-        x = int(filename.split("_")[1][3:])
-        # aggiungi il nome del file e il numero "X" alla lista
+        # Get the number "X" from the file name
+        x = int(filename.split("_")[1].split(".")[0])
+        # Save the file name and the number "X" in a list
         file_list.append((filename, x))
 
-# ordina la lista in base al numero "X" presente nel nome del file
+# Sort the list using the number "X" of each image
 sorted_file_list = sorted(file_list, key=lambda x: x[1])
 
 MODEL_gradcam = models.resnet50(pretrained=True)
@@ -38,8 +38,6 @@ TARGET_LAYERS = [MODEL_gradcam.layer4]
 for name_id in range(len(sorted_file_list)):
     img = cv2.imread(directory_imgs+sorted_file_list[name_id][0], 1)[:, :, ::-1]
     resized_image = cv2.resize(img, (width, height))
-    #cv2.imwrite("center_2_img/best_img"+str(name_id)+"_.png", resized_image[:,:,::-1])
-
     resized_image = np.float32(resized_image) / 255
 
     input_tensor = preprocess_image(resized_image, mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
@@ -54,6 +52,4 @@ for name_id in range(len(sorted_file_list)):
         grayscale_cam = grayscale_cam[0, :]
         grayscale_cam_mask = grayscale_cam * 255  #make range between 0-255
 
-    cv2.imwrite("ssim_eigencam_target_cams_5f/best_img_cam"+str(name_id)+"_.png", grayscale_cam_mask)
-
-
+    cv2.imwrite("cams/img_cam_"+str(name_id)+".png", grayscale_cam_mask)

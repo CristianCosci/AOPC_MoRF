@@ -1,8 +1,0 @@
-Test prodotti su immagine attaccate utilizzando AGV con 3 filtri.
-Le funzioni obiettivo utilizzate nella fitness sono:
-- center_distance
-- ssim_not_inv
-
-Il metodo XAI attacco è in entrambi i casi EigenCAM
-
-La dimensione dei blocchi per la valutazione è di 16 pixel con 14 blocchi per riga.
