@@ -118,7 +118,8 @@ for name_id in range(len(imgs_names)):
 
     if verbose:
         print(f'total sum {total_sum_blocks}')
-        print(f'breaking value {breaking_pct_value}')
+        if pct >= 0:
+            print(f'breaking value {breaking_pct_value}')
     
     AOPC = []
     for i in range(len(blocks_dict.items())):

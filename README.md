@@ -23,6 +23,12 @@ where $M$ is the pixel deletion procedure (MoRF or LeRF), $L$ is the number of p
 ```
 denotes the mean over all images in the dataset.
 
+
+---
+
+### More information about the algorithm behavior
+The algorithm starts with an image on which the AOPC (yes, there is an AOPC value for each image, and it is then averaged across all the images in the dataset) needs to be computed. This image is classified, and an explanation for this classification is generated using an explainability model. From this explanation, a grid is created (according to the dimensions requested by the user), and each grid block is assigned an importance value. The more important the pixels within the block are for the classification, the more important the block itself will be. This is done based on the values of the explanation. An illustrative example is provided in the images below.
+
 <div style="text-align:center;">
 <table>
   <tr>
@@ -32,16 +38,17 @@ denotes the mean over all images in the dataset.
     </td>
     <td>
       <img src="other/readme_imgs/img_cam_0.png">
-      <p align="center">Image after 10 perturbation step</p>
+      <p align="center">Explaination of the original image.</p>
     </td>
     <td>
       <img src="other/readme_imgs/grid.png">
-      <p align="center">Image after 30 perturbation step</p>
+      <p align="center">Example of how the grid is created. <br>The heatmap represent the importance. </p>
     </td>
   </tr>
 </table>
 </div>
 
+Starting from this point, the various blocks are perturbed in descending order of importance, and the formula mentioned above is calculated. Perturbation can be done in various ways (such as zeroing out pixels, adding noise, using random values, etc.). In this case, we have chosen to use the mean. Specifically, for each block that needs to be perturbed, the average value is calculated, and this value is assigned to every pixel within the block. An illustrative example of how the perturbetion work over different iteration is provided in the images below.
 
 <div style="text-align:center;">
 <table>
@@ -61,6 +68,9 @@ denotes the mean over all images in the dataset.
   </tr>
 </table>
 </div>
+
+### How to analyze the results
+As mentioned earlier, the faster the classification output decreases, the better the explainability method will be. In the two following graphs, in the first case, we can observe a very high AOPC value, indicating a favorable evaluation for the explanation method. In the right image, we can see a lower AOPC value, indicating poorer performance.
 
 <img src="other/readme_imgs/aopc_plot_example.png">
 
@@ -90,14 +100,30 @@ For simplicity this file has no argument to pass by command line. You have only 
 In the code we use a `Resnet50` model and `GradCam` as explaination method. <br>
 Obviously you have to use this file only if you don't have already the explainations. If you know how to produce them by yourself you don't need this file (consider it just an utils file).
 
-TODO NOMI FILE per regex
-
 ### `report_analysis.py`
 Also this file has no argument to pass by command line. You only have to change the filename of the results `.pkl` file directly in the script. <br>
 Also this file is an utils file, you can use this as a baseline to obtain more analysis on the computed results. As it is the file produce in output the mean AOPC across all the images in the dataset and plot the chart of the AOPC curve for each image. It saves each plot in the `AOPC_plots` :open_file_folder: directory.
 
 ### Example of Usage 
-TODO
+1. The first thing you have to do is to prepare the images dataset. For example put the images in a folder like the one already present and called `imgs` :open_file_folder:.
+2. Rename all the images in a correct pattern, for example if you want to use the already present **regex** you have to rename the images as: `img_{X}.png` where `X` is a number. I suggest you to start from `0` and increase iteratively by `1` each (like the 3 example images already present).
+3. Next, you have to generate the explanation using the method you want to test. In the `generate_cams.py` file there is an example of how to do it with different methods taken from [this](https://github.com/jacobgil/pytorch-grad-cam) library. TO run it:
+```
+python3 generate_cams.py
+```
+4. As for the images, you have to rename the cams in a correct way and put in a folder like the one already present and called `cams` :open_file_folder:. For example you can rename the cams as: `img_cam_{X}.png` where `X` is a number.
+5. Now you have everythings to compute the AOPC across your datasets of images. To do this you can run the algorithm:
+```bash
+python3 AOPC_MoRF.py imgs/ cams/ -block_size 8 -block_row 28 --file_name results.pkl -v True
+```
+6. The results will be saved in a file called `results.pkl`
+7. You can analyze the result using the script `results_analysis.py`:
+```
+python3 results_analysis.py
+```
+which will plot some chart like the one in the `AOPC_plots` folder :open_file_folder: and will give in output the mean AOPC across all the images.
+
+Now you are ready to start!
 
 ## Requiriments Installation
 Before running the project, prepare the system as follows:
