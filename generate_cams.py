@@ -42,7 +42,7 @@ for name_id in range(len(sorted_file_list)):
 
     input_tensor = preprocess_image(resized_image, mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 
-    cam_algorithm = EigenCAM
+    cam_algorithm = GradCAM
 
     with cam_algorithm(model = MODEL_gradcam, target_layers = TARGET_LAYERS, use_cuda=True) as cam:
         cam.batch_size = 256

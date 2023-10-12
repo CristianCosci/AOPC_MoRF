@@ -23,7 +23,37 @@ where $M$ is the pixel deletion procedure (MoRF or LeRF), $L$ is the number of p
 ```
 denotes the mean over all images in the dataset.
 
+metterew foto qui
+
 ## Usage
+The project is composed by 3 different python script:
+1. `AOPC_MoRF.py` $\rightarrow$ the main file in which the AOPC across al the image of your dataset is computed. It gives in output a `.pkl` file with the results. The results are saved in a dict that has the following format: <br>
+{`image_id`: (`original_class`, `AOPC`, `sum(AOPC)/L+1`)}
+2. `generate_cams.py` $\rightarrow$ the fail that you have to use before the computation of AOPC in order to generate all the cams (explanations) for your selected Explanation Method
+3. `report_analysis.py` $\rightarrow$ this is an optional file, you can use this to load the `.pkl` results file and plot the results (for example the AOPC chart).
+
+Below are described the parameters and other characteristics of each script.
+
+### `AOPC_Morf.py`
+Command line arguments:
+- `imgs_dir`: Path of the directory containing images for AOPC.
+- `cams_dir`: Phe path of the directory containing cameras for AOPC.
+- `--block_size` (or `-size`): The block size for AOPC evaluation, with a default value of 8.
+- `--block_row` (or `-row`): The number of blocks per row in images, with a default value of 28.
+- `--percentile` (or `-pct`): The percentile up to which AOPC is computed, with a default value of `None`.
+- `--results_file_name` (or `-file_name`): The name of the file in which results are saved, with a default value of `results.pkl`.
+- `--verbose` (or `-v`): Enable verbose mode, with a default value of `False` (possible value `True` or `False`).
+
+:warning: **Please note** that the `--block_size` and `--block_row` arguments must be consistent with each other. For example, using image of 224x224 pixel, if you use a block size of 8x8 pixel (the arguments is 8) you can compute by yourself the value for the argument block row $\rightarrow$ 224/8 = 28, so you will have a grid composed of 28x28 blocks, each of them composed by 8x8 pixels.
+
+### `generate_cams.py`
+For simplicity this file has no argument to pass by command line. You have only to change somethings inside the code. For example you can change the directory path from which the images are taken (the images which you want to classify and then to produce classifcation explainations). Inside you can also change the model for the classification and the Explaination method used. <br>
+In the code we use a `Resnet50` model and `GradCam` as explaination method. <br>
+Obviously you have to use this file only if you don't have already the explainations. If you know how to produce them by yourself you don't need this file (consider it just an utils file).
+
+### `report_analysis.py`
+Also this file has no argument to pass by command line. You only have to change the filename of the results `.pkl` file directly in the script. <br>
+Also this file is an utils file, you can use this as a baseline to obtain more analysis on the computed results. As it is the file produce in output the mean AOPC across all the images in the dataset and plot the chart of the AOPC curve for each image. It saves each plot in the `AOPC_plots` :open_file_folder: directory.
 
 ### Example of Usage 
 
@@ -32,4 +62,7 @@ denotes the mean over all images in the dataset.
 ### Questions and Issues
 
 ### References
+The code is implemented basing on the following research papers:
+1. Samek, Wojciech et al. "[Evaluating the visualization of what a deep neural network has learned.](https://ojs.aaai.org/index.php/AAAI/article/view/6064)" IEEE transactions on neural networks and learning systems 28.11 (2016): 2660-2673.
 \cite{tomsett2020sanity, samek2016evaluating}
+2. Tomsett, Richard et al. "[Sanity checks for saliency metrics.](https://ojs.aaai.org/index.php/AAAI/article/view/6064)" Proceedings of the AAAI conference on artificial intelligence 34.04 (2020): 6021-6029.
