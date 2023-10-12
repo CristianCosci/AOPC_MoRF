@@ -1,6 +1,5 @@
 import os
 import glob
-import urllib.request
 import re
 import cv2
 import numpy as np
@@ -42,11 +41,6 @@ cams_names = [os.path.basename(img) for img in cams]
 if verbose:
     print(imgs_names)
     print(cams_names)
-
-
-# Download ImageNet labels
-url = "https://raw.githubusercontent.com/pytorch/hub/master/imagenet_classes.txt"
-labels = urllib.request.urlopen(url).read().decode("utf-8").split("\n")[1:]
 
 # Image preprocessing
 def preprocess_image(

@@ -23,7 +23,7 @@ where $M$ is the pixel deletion procedure (MoRF or LeRF), $L$ is the number of p
 ```
 denotes the mean over all images in the dataset.
 
-metterew foto qui
+TODO
 
 ## Usage
 The project is composed by 3 different python script:
@@ -51,16 +51,33 @@ For simplicity this file has no argument to pass by command line. You have only 
 In the code we use a `Resnet50` model and `GradCam` as explaination method. <br>
 Obviously you have to use this file only if you don't have already the explainations. If you know how to produce them by yourself you don't need this file (consider it just an utils file).
 
+TODO NOMI FILE per regex
+
 ### `report_analysis.py`
 Also this file has no argument to pass by command line. You only have to change the filename of the results `.pkl` file directly in the script. <br>
 Also this file is an utils file, you can use this as a baseline to obtain more analysis on the computed results. As it is the file produce in output the mean AOPC across all the images in the dataset and plot the chart of the AOPC curve for each image. It saves each plot in the `AOPC_plots` :open_file_folder: directory.
 
 ### Example of Usage 
+TODO
 
 ## Requiriments Installation
+Before running the project, prepare the system as follows:
+- Install virtuenv if is not in your system
+```bash
+pip install virtualenv
+```
+- Install the virtualenv in the same dir of the project
+```bash
+virtualenv AOPC
+source AOPC/bin/activate
+```
+- Install all the requirements dependencies
+```bash
+pip install -r requirements.txt
+```
 
-### Questions and Issues
-
+### Questions and Issues :question:
+If you have any problem and you need help, you can open an **Issue**.
 ### References
 The code is implemented basing on the following research papers:
 1. Samek, Wojciech et al. "[Evaluating the visualization of what a deep neural network has learned.](https://ojs.aaai.org/index.php/AAAI/article/view/6064)" IEEE transactions on neural networks and learning systems 28.11 (2016): 2660-2673.
