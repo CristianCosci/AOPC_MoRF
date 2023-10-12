@@ -1,4 +1,4 @@
-# Area Over Perturbation Curve using Most Relevan feature
+# Area Over Perturbation Curve using Most Relevan feature (AOPC)
 
 ## Introduction
 Since we cannot trust the XAI methods blindly, it is necessary to define and have some **metrics capable of providing a quality index of each explanation method**. However, there are still no metrics used as standard in the state of the art. The objective assessment of the explanations quality is still an active field of research. The various metrics defined are not general but depend on the specific model task on which the XAI methods are used. <br>
@@ -23,7 +23,46 @@ where $M$ is the pixel deletion procedure (MoRF or LeRF), $L$ is the number of p
 ```
 denotes the mean over all images in the dataset.
 
-TODO
+<div style="text-align:center;">
+<table>
+  <tr>
+    <td>
+      <img src="other/readme_imgs/iter0.jpg">
+      <p align="center">Original image.</p>
+    </td>
+    <td>
+      <img src="other/readme_imgs/img_cam_0.png">
+      <p align="center">Image after 10 perturbation step</p>
+    </td>
+    <td>
+      <img src="other/readme_imgs/grid.png">
+      <p align="center">Image after 30 perturbation step</p>
+    </td>
+  </tr>
+</table>
+</div>
+
+
+<div style="text-align:center;">
+<table>
+  <tr>
+    <td>
+      <img src="other/readme_imgs/iter0.jpg">
+      <p align="center">Original image.</p>
+    </td>
+    <td>
+      <img src="other/readme_imgs/iter10.jpg">
+      <p align="center">Image after 10 perturbation step</p>
+    </td>
+    <td>
+      <img src="other/readme_imgs/iter30.jpg">
+      <p align="center">Image after 30 perturbation step</p>
+    </td>
+  </tr>
+</table>
+</div>
+
+<img src="other/readme_imgs/aopc_plot_example.png">
 
 ## Usage
 The project is composed by 3 different python script:
