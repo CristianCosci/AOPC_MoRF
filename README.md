@@ -7,7 +7,7 @@ The faithfulness of an explanation refers to whether the relevance scores reflec
 There are several methods to compute the Faithfulness, one of them is a metric called **Area Over the Perturbation Curve - (AOPC)**, described below.
 
 ## Metric Description
-The **AOPC** approach, measures the change in classifier output as pixels are sequentially perturbed (flipped in binary images, or set to a different value for RGB images) in order of their relevance as estimated by the explanation method. It can be see as a greedy iterative procedure that consists of measuring how the class encoded in the image disappears when we progressively remove information from the image $x$. <br>
+The **AOPC** approach, measures the change in classifier output as pixels are sequentially perturbed (flipped in binary images, or set to a different value for RGB images) in order of their relevance as estimated by the explanation method. It can be seen as a greedy iterative procedure that consists of measuring how the class encoded in the image disappears when we progressively remove information from the image $x$. <br>
 The classification output should decrease more rapidly for methods that provide more accurate estimates of pixel relevance. This approach can be done in two ways:
 - **Most Relevant First (MoRF)**: The pixels are perturbed starting from the most important according to the heatmap (rapid decrease in classification output).
 - **Least Relevant First (LeRF)**: The least relevant pixels are perturbed first. In this case, the classification output should change more slowly the more accurate the saliency method.
@@ -48,7 +48,7 @@ The algorithm starts with an image on which the AOPC (yes, there is an AOPC valu
 </table>
 </div>
 
-Starting from this point, the various blocks are perturbed in descending order of importance, and the formula mentioned above is calculated. Perturbation can be done in various ways (such as zeroing out pixels, adding noise, using random values, etc.). In this case, we have chosen to use the mean. Specifically, for each block that needs to be perturbed, the average value is calculated, and this value is assigned to every pixel within the block. An illustrative example of how the perturbetion work over different iteration is provided in the images below.
+Starting from this point, the various blocks are perturbed in descending order of importance, and the formula mentioned above is calculated. Perturbation can be done in various ways (such as zeroing out pixels, adding noise, using random values, etc.). In this case, we have chosen to use the **mean**. Specifically, for each block that needs to be perturbed, the average value is calculated, and this value is assigned to every pixel within the block. An illustrative example of how the perturbetion work over different iteration is provided in the images below.
 
 <div style="text-align:center;">
 <table>
@@ -70,7 +70,9 @@ Starting from this point, the various blocks are perturbed in descending order o
 </div>
 
 ### How to analyze the results
-As mentioned earlier, the faster the classification output decreases, the better the explainability method will be. In the two following graphs, in the first case, we can observe a very high AOPC value, indicating a favorable evaluation for the explanation method. In the right image, we can see a lower AOPC value, indicating poorer performance.
+As mentioned earlier, the faster the classification output decreases, the better the explainability method will be. Now observe the following example graphs:
+- in the first case, we can observe a very high AOPC value, indicating a favorable evaluation for the explanation method.
+- In the right image, we can see a lower AOPC value, indicating poorer performance.
 
 <img src="other/readme_imgs/aopc_plot_example.png">
 
@@ -78,7 +80,7 @@ As mentioned earlier, the faster the classification output decreases, the better
 The project is composed by 3 different python script:
 1. `AOPC_MoRF.py` $\rightarrow$ the main file in which the AOPC across al the image of your dataset is computed. It gives in output a `.pkl` file with the results. The results are saved in a dict that has the following format: <br>
 {`image_id`: (`original_class`, `AOPC`, `sum(AOPC)/L+1`)}
-2. `generate_cams.py` $\rightarrow$ the fail that you have to use before the computation of AOPC in order to generate all the cams (explanations) for your selected Explanation Method
+2. `generate_cams.py` $\rightarrow$ the file that you have to use before the computation of AOPC in order to generate all the cams (explanations) using selected Explanation Method.
 3. `report_analysis.py` $\rightarrow$ this is an optional file, you can use this to load the `.pkl` results file and plot the results (for example the AOPC chart).
 
 Below are described the parameters and other characteristics of each script.
@@ -86,12 +88,12 @@ Below are described the parameters and other characteristics of each script.
 ### `AOPC_Morf.py`
 Command line arguments:
 - `imgs_dir`: Path of the directory containing images for AOPC.
-- `cams_dir`: Phe path of the directory containing cameras for AOPC.
-- `--block_size` (or `-size`): The block size for AOPC evaluation, with a default value of 8.
-- `--block_row` (or `-row`): The number of blocks per row in images, with a default value of 28.
-- `--percentile` (or `-pct`): The percentile up to which AOPC is computed, with a default value of `None`.
-- `--results_file_name` (or `-file_name`): The name of the file in which results are saved, with a default value of `results.pkl`.
-- `--verbose` (or `-v`): Enable verbose mode, with a default value of `False` (possible value `True` or `False`).
+- `cams_dir`: Path of the directory containing explations for AOPC.
+- `--block_size` (or `-size`): The block size for AOPC evaluation, with a *default* value of 8.
+- `--block_row` (or `-row`): The number of blocks per row in images, with a *default* value of 28.
+- `--percentile` (or `-pct`): The percentile up to which AOPC is computed, with a *default* value of `None`.
+- `--results_file_name` (or `-file_name`): The name of the file in which results are saved, with a *default* value of `results.pkl`.
+- `--verbose` (or `-v`): Enable verbose mode, with a *default* value of `False` (possible value `True` or `False`).
 
 :warning: **Please note** that the `--block_size` and `--block_row` arguments must be consistent with each other. For example, using image of 224x224 pixel, if you use a block size of 8x8 pixel (the arguments is 8) you can compute by yourself the value for the argument block row $\rightarrow$ 224/8 = 28, so you will have a grid composed of 28x28 blocks, each of them composed by 8x8 pixels.
 
@@ -104,26 +106,27 @@ Obviously you have to use this file only if you don't have already the explainat
 Also this file has no argument to pass by command line. You only have to change the filename of the results `.pkl` file directly in the script. <br>
 Also this file is an utils file, you can use this as a baseline to obtain more analysis on the computed results. As it is the file produce in output the mean AOPC across all the images in the dataset and plot the chart of the AOPC curve for each image. It saves each plot in the `AOPC_plots` :open_file_folder: directory.
 
-### Example of Usage 
-1. The first thing you have to do is to prepare the images dataset. For example put the images in a folder like the one already present and called `imgs` :open_file_folder:.
-2. Rename all the images in a correct pattern, for example if you want to use the already present **regex** you have to rename the images as: `img_{X}.png` where `X` is a number. I suggest you to start from `0` and increase iteratively by `1` each (like the 3 example images already present).
-3. Next, you have to generate the explanation using the method you want to test. In the `generate_cams.py` file there is an example of how to do it with different methods taken from [this](https://github.com/jacobgil/pytorch-grad-cam) library. TO run it:
-```
-python3 generate_cams.py
-```
-4. As for the images, you have to rename the cams in a correct way and put in a folder like the one already present and called `cams` :open_file_folder:. For example you can rename the cams as: `img_cam_{X}.png` where `X` is a number.
-5. Now you have everythings to compute the AOPC across your datasets of images. To do this you can run the algorithm:
-```bash
-python3 AOPC_MoRF.py imgs/ cams/ -block_size 8 -block_row 28 --file_name results.pkl -v True
-```
-6. The results will be saved in a file called `results.pkl`
-7. You can analyze the result using the script `results_analysis.py`:
-```
-python3 results_analysis.py
-```
-which will plot some chart like the one in the `AOPC_plots` folder :open_file_folder: and will give in output the mean AOPC across all the images.
 
-Now you are ready to start!
+### Example of Usage
+1. The first step is to prepare the image dataset. For instance, place the images in a folder similar to the one already provided, named `imgs` :open_file_folder:.
+2. Rename all the images following a specific pattern. For example, if you wish to use the provided **regex**, rename the images as `img_{X}.png`, where `X` is a number. We recommend starting from `0` and incrementing it iteratively by `1`, similar to the three example images already provided.
+3. Next, you need to generate the explanations using the method you want to test. Inside the `generate_cams.py` file, you can find an example of how to do this using various methods taken from [this library](https://github.com/jacobgil/pytorch-grad-cam). To execute it, run the following command:
+   ```bash
+   python3 generate_cams.py
+   ```
+4. Similarly to the images, you should rename the generated cams correctly and place them in a folder, such as the one already provided, named `cams` :open_file_folder:. For example, you can name the cams as `img_cam_{X}.png`, where `X` is a number.
+5. You now have everything you need to compute the AOPC across your image datasets. To do this, run the algorithm with the following command:
+   ```bash
+   python3 AOPC_MoRF.py imgs/ cams/ -block_size 8 -block_row 28 --file_name results.pkl -v True
+   ```
+6. The results will be saved in a file named `results.pkl`.
+7. To analyze the results, you can use the script `results_analysis.py`:
+   ```bash
+   python3 results_analysis.py
+   ```
+   This script will generate charts similar to those found in the `AOPC_plots` folder :open_file_folder: and will provide the mean AOPC across all the images as output.
+
+:exclamation:Now, you are ready to get started! :exclamation:
 
 ## Requiriments Installation
 Before running the project, prepare the system as follows:
