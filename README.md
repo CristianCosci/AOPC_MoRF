@@ -17,7 +17,11 @@ In this work, we decided to use the MoRF version. It is computed as follow:
     \text{AOPC}_M = \frac{1}{L + 1} \Biggl \langle \sum_{k=1}^{L} f(x^{(0)}_M) - f(x^{(k)}_M) \biggr \rangle_{p(X)} 
 ```
 
-where $M$ is the pixel deletion procedure (MoRF or LeRF), $L$ is the number of pixel deletion steps, $f(x)$ is the output value of the classifier for input image $x$ (i.e. the probability assigned to the highest-probability class),  $x^{(0)}_M$ is the input image after $0$ perturbation steps (i.e. $x^{(0)}_M = x$), $x^{(k)}_M$ is the input image after $k$ perturbation steps, and $\bigl \langle . \bigr \rangle_{p(X)}$ denotes the mean over all images in the dataset.
+where $M$ is the pixel deletion procedure (MoRF or LeRF), $L$ is the number of pixel deletion steps, $f(x)$ is the output value of the classifier for input image $x$ (i.e. the probability assigned to the highest-probability class),  $x^{(0)}_M$ is the input image after $0$ perturbation steps (i.e. $x^{(0)}_M = x$), $x^{(k)}_M$ is the input image after $k$ perturbation steps, and 
+```math
+\bigl \langle . \bigr \rangle_{p(X)}
+```
+denotes the mean over all images in the dataset.
 
 ## Usage
 
